@@ -1,5 +1,6 @@
 const axios = require('axios');
 const Dev = require('../models/Dev');
+const { parseStringAsArray } = require('../utils/stringUtil');
 
 //index, show, store, update, destroy
 
@@ -21,7 +22,7 @@ module.exports = {
             const avatar_url = apiGitResponse.data.avatar_url;
             const bio = apiGitResponse.data.bio || '';
             
-            const techsArray = techs.split(',').map(tech => tech.trim());
+            const techsArray = parseStringAsArray(techs);
             
             const location = {
                 type: 'Point',
