@@ -12,19 +12,27 @@ const routes = Router();
 // Body: request.body (dados para criação ou alteração de um registro)
 
 routes.post('/devs', async (request, response) => {
-    const { github_username, techs } = request.body;
+    const { github_username, techs, latitude, longitude } = request.body;
+
     const apiGitResponse =  await axios.get(`https://api.github.com/users/${github_username}`);
     const name = apiGitResponse.data.name || apiGitResponse.data.login;
     const avatar_url = apiGitResponse.data.avatar_url;
     const bio = apiGitResponse.data.bio || '';
+    
     const techsArray = techs.split(',').map(tech => tech.trim());
+    
+    const location = {
+        type: 'Point',
+        coordinates:[longitude, latitude]
+    }
 
     const dev = await Dev.create({
         github_username,
         name,
         avatar_url,
         bio,
-        techs: techsArray
+        techs: techsArray,
+        location
     });
     return response.json(dev);
 });
