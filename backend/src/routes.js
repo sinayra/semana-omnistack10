@@ -15,6 +15,6 @@ routes.get('/devs', DevController.index);
 routes.get('/search', SearchController.index);
 
 routes.put('/dev', DevController.update);
-routes.delete('/dev', DevController.destroy);
+routes.delete('/dev/:github_username', DevController.destroy);
 
 module.exports = routes;

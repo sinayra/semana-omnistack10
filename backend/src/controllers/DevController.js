@@ -60,19 +60,25 @@ module.exports = {
             }
 
             dev = await Dev.updateOne({ github_username }, {
-                    name,
-                    avatar_url,
-                    bio,
-                    techs: techsArray,
-                    location
-                });
+                name,
+                avatar_url,
+                bio,
+                techs: techsArray,
+                location
+            });
         }
         return response.json(dev);
 
     },
 
     async destroy(request, response){
-        let devs = {};
+        const { github_username } = request.params;
+
+        let dev = await Dev.findOne({ github_username });
+
+        if(dev){
+            dev = await Dev.deleteOne({ github_username });
+        }
 
         return response.json(dev);
     }
