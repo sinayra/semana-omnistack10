@@ -1,6 +1,5 @@
-# Rodar mongodb
-` E:\MongoDB\Server\4.2\bin\mongod.exe --dbpath "E:\MongoDB\data" `
-` E:\MongoDB\Server\4.2\bin\mongo.exe `
+# Run mongodb
+ As administrator: ` E:\MongoDB\Server\4.2\bin\mongod.exe --dbpath "E:\MongoDB\data" `
 
-# Rodar backend
+# Run server
 `yarn dev`
